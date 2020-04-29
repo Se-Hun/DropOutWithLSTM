@@ -1,0 +1,12 @@
+# Ignore Data Folder
+data/
+.data/
+
+# Ignore .idea Folder
+.idea/
+
+# Ignore .ipynb_checkpoints
+.ipynb_checkpoints/
+
+# Ignore .cache
+.vector_cache/
