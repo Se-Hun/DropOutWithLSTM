@@ -18,11 +18,11 @@ class IMDBLstm(nn.Module):
         bs = inp.size()[1]
         if bs != self.bs:
             self.bs = bs
-        e_out = self.emb(inp) # 먼저, embedding하고
+        e_out = self.emb(inp) # (1) 먼저, embedding하고
         h0 = c0 = Variable(e_out.data.new(*(self.nl, self.bs, self.hidden_size)).zero_())
-        lstm_out, _ = self.lstm(e_out, (h0, c0))
+        lstm_out, _ = self.lstm(e_out, (h0, c0)) # (2) lstm층에 한 번 통과시키고
         lstm_out = lstm_out[-1]
-        fc = F.dropout(self.fc2(lstm_out), p=0.5)
-        print(fc)
+        fc = F.dropout(self.fc2(lstm_out), p=0.5) # (3) 선형 레이어 통과한 후에 dropout 시키고
+        # print(fc)
         # 여기 부분에 dropout 결과를 저장하는 코드를 넣어서 살펴봐야할듯?
-        return self.softmax(fc)
+        return self.softmax(fc) # (4) 마지막에 softmax로 출력한다.
