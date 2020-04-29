@@ -10,3 +10,6 @@ data/
 
 # Ignore .cache
 .vector_cache/
+
+# Ignore pycache
+__pycache__/
